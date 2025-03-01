@@ -218,6 +218,17 @@ d3.csv("forBubbleGraph_subset_fullnames.csv").then(function(data) {
 
   });
 
+  svg.append("text")
+            .attr("x", width/5 + 100)
+            .attr("y", (height))
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "12px")
+            .attr("fill", "black")
+            .attr("text-anchor", "middle")
+            .text("Note: buyer and seller market power, the oranger a bubble the greater the proportion of Dutch value in European Exports")
+            .attr("transform", "translate(0, -2)");
+
+
    </script>
   </body>
 </html>
