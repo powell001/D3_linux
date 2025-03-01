@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<style>
+
+.bubbles {
+stroke-width: 1px;
+stroke:black;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+.grid line {
+  stroke: lightgrey;
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges;
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+</style>
+
+
+<body>
+
+<!-- load the d3.js library -->    
+<script src="https://d3js.org/d3.v7.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+<style>
+  .bubbles {
+    stroke-width: 2px;
+    stroke: white;
+  }
+  .bubbles:hover {
+    stroke: black;
+  }
+  </style>
+
+
+<script>
+
+<!-- load the d3.js library --> 
+
+var margin = {top: 20, right: 30, bottom: 40, left: 50},
+    width = 1400 - margin.left - margin.right,
+    height = 800 - margin.top - margin.bottom;
+
+// set the ranges
+var x = d3.scaleLinear().range([0, width]);
+var y = d3.scaleLinear().range([height, 0]);
+var z = d3.scaleSqrt().range([8, 80]);
+
+// append the svg obgect to the body of the page
+// appends a 'group' element to 'svg'
+// moves the 'group' element to the top left margin
+
+var svg = d3.select("#my_dataviz").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// gridlines in x axis function
+function make_x_gridlines() {		
+    return d3.axisBottom(x)
+        .ticks(5)
+}
+
+// gridlines in y axis function
+function make_y_gridlines() {		
+    return d3.axisLeft(y)
+        .ticks(5)
+}
+
+d3.csv("forBubbleGraph_subset_fullnames.csv").then(function(data) {
+
+  // format the data
+  data.forEach(function(d) {
+    d.Percentage_Dutch_exports_EU = +d.Percentage_Dutch_exports_EU;
+    d.Percentage_EUto_World = +d.Percentage_EUto_World;
+    d.Percentage_USAimportsfrom_World = +d.Percentage_USAimportsfrom_World;
+    d.Value_EUexports_USA = +d.Value_EUexports_USA;
+    d.Product = d.Product;
+  });
+
+  // Scale the range of the data
+  x.domain([0, d3.max(data, function(d) { return d.Percentage_EUto_World; })]);
+  y.domain([0, d3.max(data, function(d) { return d.Percentage_USAimportsfrom_World; })]);
+  z.domain([1604801, 49527468]);
+
+  var myColor = d3.scaleSequential(d3.interpolateOranges);
+  
+   // -1- Create a tooltip div that is hidden by default:
+   const tooltip = d3.select("#my_dataviz")
+    .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "black")
+      .style("border-radius", "5px")
+      .style("padding", "10px")
+      .style("color", "white")
+
+  // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
+  const showTooltip = function(event, d) {
+    tooltip
+      .transition()
+      .duration(200)
+    tooltip
+      .style("opacity", 1)
+      .html("HS6 Name: " + d.description)
+      .style("left", (event.x)/2 + "px")
+      .style("top", (event.y)/2+30 + "px")
+  }
+  const moveTooltip = function(event, d) {
+    tooltip
+      .style("left", (event.x)/2 + "px")
+      .style("top", (event.y)/2+30 + "px")
+  }
+  const hideTooltip = function(event, d) {
+    tooltip
+      .transition()
+      .duration(200)
+      .style("opacity", 0)
+  }
+
+  var circle =svg.append('g')
+    .selectAll("dot")
+    .data(data)
+    .enter()
+    .append("circle")
+      .attr("class", "bubbles")
+      .attr("cx", function (d) { return x(d.Percentage_EUto_World);})
+      .attr("cy", function (d) { return y(d.Percentage_USAimportsfrom_World);})
+      .attr("r", function (d) { return z(d.Value_EUexports_USA); } )
+      .style("fill", function (d) { return myColor(d.Percentage_Dutch_exports_EU/d3.max(data, function(d) {return d.Percentage_Dutch_exports_EU; }));})
+    // -3- Trigger the functions
+    .on("mouseover", showTooltip )
+    .on("mousemove", moveTooltip )
+    .on("mouseleave", hideTooltip );
+
+  svg
+    .selectAll("textCircle")
+    .data(data)
+    .enter()
+    .append("text")
+      .attr("x", function(d) {return x(d.Percentage_EUto_World);})
+      .attr("y", function(d) {return y(d.Percentage_USAimportsfrom_World);})
+      .text(function(d) {return d.Name;})
+      .style("text-anchor", "middle")
+      .style("font-weight", "bold")
+      .style("font-size", "10pt")
+      .style("fill", "Black");
+
+  const gx = svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+    
+  const gy = svg.append("g")
+    .call(d3.axisLeft(y));
+
+  // gridlines in x axis function
+  function make_x_gridlines() {		
+      return d3.axisBottom(x)
+          .ticks(5)
+  }
+  // gridlines in y axis function
+  function make_y_gridlines() {		
+      return d3.axisLeft(y)
+          .ticks(5)
+  }
+  // add the X gridlines
+  svg.append("g")			
+    .attr("class", "grid")
+    .attr("transform", "translate(0," + height + ")")
+    .call(make_x_gridlines()
+        .tickSize(-height)
+        .tickFormat("")
+    )
+
+  // add the Y gridlines
+  svg.append("g")			
+    .attr("class", "grid")
+    .call(make_y_gridlines()
+        .tickSize(-width)
+        .tickFormat("")
+    )
+
+  // Add X axis label:
+  svg.append("text")
+    .attr("text-anchor", "end")
+    .attr("x", 150 +width/2)
+    .attr("y", height + margin.top + 10)
+    .text("Percent of World Exports originating in the EU");
+
+  // Y axis label:
+  svg.append("text")
+    .attr("text-anchor", "end")
+    .attr("transform", "rotate(-90)")
+    .attr("y", -margin.left+20)
+    .attr("x", -margin.top - height/2 + 180)
+    .text("Percentage of World Imports going to the USA")  
+
+  svg.append("text")
+      .text("")
+      .attr("x", 700)
+      .attr("y", 300)
+
+  });
+
+  svg.append("text")
+            .attr("x", width/5 + 100)
+            .attr("y", (height))
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "12px")
+            .attr("fill", "black")
+            .attr("text-anchor", "middle")
+            .text("Note: buyer and seller market power, the oranger a bubble the greater the proportion of Dutch value in European Exports")
+            .attr("transform", "translate(0, -2)");
+
+
+   </script>
+  </body>
+</html>
+
