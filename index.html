@@ -118,7 +118,7 @@ d3.csv("forBubbleGraph_subset_fullnames.csv").then(function(data) {
       .duration(200)
     tooltip
       .style("opacity", 1)
-      .html("HS6 Name: " + d.description)
+      .html("HS6 Category: " + d.description)
       .style("left", (event.x)/2 + "px")
       .style("top", (event.y)/2+30 + "px")
   }
@@ -225,7 +225,7 @@ d3.csv("forBubbleGraph_subset_fullnames.csv").then(function(data) {
             .attr("font-size", "12px")
             .attr("fill", "black")
             .attr("text-anchor", "middle")
-            .text("Note: buyer and seller market power, the oranger a bubble the greater the proportion of Dutch value in European Exports")
+            .text("Note: buyer and seller market power, the oranger a bubble the greater the proportion of Dutch value in European exports")
             .attr("transform", "translate(0, -2)");
 
 
