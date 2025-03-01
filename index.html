@@ -4,7 +4,7 @@
 <style>
 
 .bubbles {
-stroke-width: 2px;
+stroke-width: 1px;
 stroke:black;
 }
 
@@ -33,11 +33,25 @@ stroke:black;
 <script src="https://d3js.org/d3.v7.js"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+<style>
+  .bubbles {
+    stroke-width: 2px;
+    stroke: white;
+  }
+  .bubbles:hover {
+    stroke: black;
+  }
+  </style>
+
+
 <script>
 
 <!-- load the d3.js library --> 
 
-var margin = {top: 20, right: 30, bottom: 30, left: 50},
+var margin = {top: 20, right: 30, bottom: 40, left: 50},
     width = 1400 - margin.left - margin.right,
     height = 800 - margin.top - margin.bottom;
 
@@ -50,7 +64,7 @@ var z = d3.scaleSqrt().range([8, 80]);
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#my_dataviz").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -69,7 +83,7 @@ function make_y_gridlines() {
         .ticks(5)
 }
 
-d3.csv("forBubbleGraph_subset_large.csv").then(function(data) {
+d3.csv("forBubbleGraph_subset_fullnames.csv").then(function(data) {
 
   // format the data
   data.forEach(function(d) {
@@ -86,7 +100,40 @@ d3.csv("forBubbleGraph_subset_large.csv").then(function(data) {
   z.domain([1604801, 49527468]);
 
   var myColor = d3.scaleSequential(d3.interpolateOranges);
-    
+  
+   // -1- Create a tooltip div that is hidden by default:
+   const tooltip = d3.select("#my_dataviz")
+    .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "black")
+      .style("border-radius", "5px")
+      .style("padding", "10px")
+      .style("color", "white")
+
+  // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
+  const showTooltip = function(event, d) {
+    tooltip
+      .transition()
+      .duration(200)
+    tooltip
+      .style("opacity", 1)
+      .html("HS6 Name: " + d.description)
+      .style("left", (event.x)/2 + "px")
+      .style("top", (event.y)/2+30 + "px")
+  }
+  const moveTooltip = function(event, d) {
+    tooltip
+      .style("left", (event.x)/2 + "px")
+      .style("top", (event.y)/2+30 + "px")
+  }
+  const hideTooltip = function(event, d) {
+    tooltip
+      .transition()
+      .duration(200)
+      .style("opacity", 0)
+  }
+
   var circle =svg.append('g')
     .selectAll("dot")
     .data(data)
@@ -97,7 +144,11 @@ d3.csv("forBubbleGraph_subset_large.csv").then(function(data) {
       .attr("cy", function (d) { return y(d.Percentage_USAimportsfrom_World);})
       .attr("r", function (d) { return z(d.Value_EUexports_USA); } )
       .style("fill", function (d) { return myColor(d.Percentage_Dutch_exports_EU/d3.max(data, function(d) {return d.Percentage_Dutch_exports_EU; }));})
-  
+    // -3- Trigger the functions
+    .on("mouseover", showTooltip )
+    .on("mousemove", moveTooltip )
+    .on("mouseleave", hideTooltip );
+
   svg
     .selectAll("textCircle")
     .data(data)

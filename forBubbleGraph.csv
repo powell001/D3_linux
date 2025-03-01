@@ -25,31 +25,31 @@ Product,Percentage_USAimportsfrom_World,Value_EUexports_USA,Percentage_EUto_Worl
 711319,10.95965525,2952675.314,23.91346525,0.036455346,Jewellery,"Jewellery: of precious metal (excluding silver) whether or not plated or clad with precious metal, and parts thereof"
 382390,12.25104509,2903789.689,42.91907465,4.558399098,Chemicals,"Chemical products, preparations and residual products of chemical or allied industries n.e.s. or included in heading no. 3823"
 293379,10.64648718,2888826.34,56.68071425,0.000384135,Heterocyclic,Heterocyclic compounds: lactams: other than 6-hexanelactam (epsilon caprolactam)
-870190,20.44286693,2885862.116,57.32098527,0.145533218,,Tractors: nes in heading no 8701 (other than tractors of heading no 8709)
-854211,3.998412602,2833088.644,6.610383953,1.76701926,Electronic,"Electronic circuits: monolithic integrated, digital"
-850780,15.68142843,2720614.983,26.92642156,0.197649908,Electric accumulators: headingc accumulators,"Electric accumulators: n.e.s. in heading no. 8507, including separators, whether or not rectangular (including square)"
-840734,26.2016646,2628530.413,46.03892198,0.021300952,Engines: chapter,"Engines: reciprocating piston engines, of a kind used for the propulsion of vehicles of chapter 87, of a cylinder capacity exceeding 1000cc"
-293490,31.00688796,2579628.337,33.98307978,0.122400191,Heterocyclic,Heterocyclic compounds: n.e.s. in chapter 29
+870190,20.44286693,2885862.116,57.32098527,0.145533218,Tractors,Tractors: nes in heading no 8701 (other than tractors of heading no 8709)
+854211,3.998412602,2833088.644,6.610383953,1.76701926,Electronic circuits,"Electronic circuits: monolithic integrated, digital"
+850780,15.68142843,2720614.983,26.92642156,0.197649908,Electric accumulators,"Electric accumulators: n.e.s. in heading no. 8507, including separators, whether or not rectangular (including square)"
+840734,26.2016646,2628530.413,46.03892198,0.021300952,Engines,"Engines: reciprocating piston engines, of a kind used for the propulsion of vehicles of chapter 87, of a cylinder capacity exceeding 1000cc"
+293490,31.00688796,2579628.337,33.98307978,0.122400191,Heterocyclic compounds,Heterocyclic compounds: n.e.s. in chapter 29
 847990,14.16496372,2428527.338,31.34812042,24.49520879,Machines,"Machines and mechanical appliances: parts, of those having individual functions"
-970110,24.40557896,2409427.354,31.75611944,9.032021888,"Paintings, drawings and pastels: bygs, drawings and pastels","Paintings, drawings and pastels: executed entirely by hand, other than drawings of heading no. 4906"
-852520,18.66979755,2384012.704,10.31494273,3.422871483,Transmission apparatus: for raon apparatus,"Transmission apparatus: for radio-telephony, radio-telegraphy, radio-broadcasting or television, with reception apparatus, with or without sound recording or reproducing apparatus"
-848180,15.1138783,2307920.44,38.5189158,2.248101629,"Taps, cocks, valves and similar appliances: valves and similas, valves and similar appliances","Taps, cocks, valves and similar appliances: for pipes, boiler shells, tanks, vats or the like, including thermostatically controlled valves"
+970110,24.40557896,2409427.354,31.75611944,9.032021888,"Paintings, drawings","Paintings, drawings and pastels: executed entirely by hand, other than drawings of heading no. 4906"
+852520,18.66979755,2384012.704,10.31494273,3.422871483,Radio apparatus,"Transmission apparatus: for radio-telephony, radio-telegraphy, radio-broadcasting or television, with reception apparatus, with or without sound recording or reproducing apparatus"
+848180,15.1138783,2307920.44,38.5189158,2.248101629,"Taps, cocks, valvess","Taps, cocks, valves and similar appliances: for pipes, boiler shells, tanks, vats or the like, including thermostatically controlled valves"
 902111,21.87485841,2294351.584,56.91924321,1.842050638,Orthopaedic,Orthopaedic or fracture appliances: artificial joints
-710239,28.75091904,2116623.449,13.51005251,0.071420072,"Diamonds: industrial, (othn","Diamonds: non-industrial, (other than unworked or simply sawn, cleaved or bruted), but not mounted or set"
-841112,9.330233356,2081064.611,18.87210888,1.660683903,Turbo,Turbo-jets: of a thrust exceeding 25kN
-901819,19.82471827,1842737.151,33.61529253,4.60764119,"Medical, examination","Medical, surgical instruments and appliances: electro-diagnostic apparatus (including apparatus for functional exploratory examination or for checking physiological parameters), not electro-cardiographs"
-870899,17.61332,1780588.896,48.62976202,0.821459015,Vehicles,"Vehicles: parts and accessories, n.e.s. in heading no. 8708"
-284420,44.98582176,1720617.293,48.5387213,28.83296495,"Uranium: in U235, plunriched in U235, plutonium, their compounds","Uranium: enriched in U235, plutonium, their compounds, alloys dispersions (including cermets), ceramic products and mixtures containing uranium enriched in U235, plutonium or compounds of these products"
+710239,28.75091904,2116623.449,13.51005251,0.071420072,Industrial diamonds,"Diamonds: non-industrial, (other than unworked or simply sawn, cleaved or bruted), but not mounted or set"
+841112,9.330233356,2081064.611,18.87210888,1.660683903,Turbo-jets,Turbo-jets: of a thrust exceeding 25kN
+901819,19.82471827,1842737.151,33.61529253,4.60764119,Medical instruments,"Medical, surgical instruments and appliances: electro-diagnostic apparatus (including apparatus for functional exploratory examination or for checking physiological parameters), not electro-cardiographs"
+870899,17.61332,1780588.896,48.62976202,0.821459015,Vehicle parts,"Vehicles: parts and accessories, n.e.s. in heading no. 8708"
+284420,44.98582176,1720617.293,48.5387213,28.83296495,Uranium 235,"Uranium: enriched in U235, plutonium, their compounds, alloys dispersions (including cermets), ceramic products and mixtures containing uranium enriched in U235, plutonium or compounds of these products"
 220410,17.63840391,1700787.324,93.53244846,0.004531254,Wine,Wine: sparkling
-330499,8.194510553,1673570.631,42.96729192,0.365604289,Cosmetic and toilet preparations medium,"Cosmetic and toilet preparations: n.e.s. in heading no. 3304, for the care of the skin (excluding medicaments, including sunscreen or sun tan preparations)"
-220890,41.19910809,1670360.282,42.90268401,5.428217551,"Spirits, liqueurs and other spirituous beverages: tue p","Spirits, liqueurs and other spirituous beverages: n.e.s. in heading no. 2208"
-842890,22.03821046,1660955.416,48.93343321,7.294894603,,"Lifting machinery: handling, loading or unloading machinery n.e.s. in heading no. 8428"
-420221,12.88380629,1635635.514,75.33748881,0.043647927,"Cases leather,","Cases and containers: handbags (whether or not with shoulder strap and including those without handle), with outer surface of leather, of composition leather or of patent leather"
-848340,16.95125741,1625220.807,46.36981597,0.397498664,Gears and,"Gears and gearing: (not toothed wheels, chain sprockets and other transmission elements presented separately): ball screws: gear boxes and other speed changers, including torque converters"
-401110,21.17697937,1625032.689,43.07050063,0.556341116,,"Rubber: new pneumatic tyres, of a kind used on motor cars (including station wagons and racing cars)"
-902211,18.07804596,1624742.522,52.39584705,24.6329503,"Apparatus based on the use of x-rays, including radiography or radiotherapy apparatus: on the use of based on the use of x-rays, including radiography or radiotherapy apparatus","Apparatus based on the use of x-rays, including radiography or radiotherapy apparatus: for medical, surgical, dental or veterinary uses"
-870829,23.71025921,1604801.373,48.04706049,1.599826398,"Vehicles: accessories,","Vehicles: parts and accessories, of bodies, other than safety seat belts"
-854380,30.38746366,1577143.252,19.46706393,1.446579502,,"Electrical machines and apparatus: having individual functions, n.e.s. in heading no. 8543"
+330499,8.194510553,1673570.631,42.96729192,0.365604289,Cosmetics ,"Cosmetic and toilet preparations: n.e.s. in heading no. 3304, for the care of the skin (excluding medicaments, including sunscreen or sun tan preparations)"
+220890,41.19910809,1670360.282,42.90268401,5.428217551,"Spirits, liqueurs","Spirits, liqueurs and other spirituous beverages: n.e.s. in heading no. 2208"
+842890,22.03821046,1660955.416,48.93343321,7.294894603,Lifting machines,"Lifting machinery: handling, loading or unloading machinery n.e.s. in heading no. 8428"
+420221,12.88380629,1635635.514,75.33748881,0.043647927,Cases leather,"Cases and containers: handbags (whether or not with shoulder strap and including those without handle), with outer surface of leather, of composition leather or of patent leather"
+848340,16.95125741,1625220.807,46.36981597,0.397498664,Gears,"Gears and gearing: (not toothed wheels, chain sprockets and other transmission elements presented separately): ball screws: gear boxes and other speed changers, including torque converters"
+401110,21.17697937,1625032.689,43.07050063,0.556341116,Rubber tyres,"Rubber: new pneumatic tyres, of a kind used on motor cars (including station wagons and racing cars)"
+902211,18.07804596,1624742.522,52.39584705,24.6329503,x-rays equipment,"Apparatus based on the use of x-rays, including radiography or radiotherapy apparatus: for medical, surgical, dental or veterinary uses"
+870829,23.71025921,1604801.373,48.04706049,1.599826398,Vehicles parts,"Vehicles: parts and accessories, of bodies, other than safety seat belts"
+854380,30.38746366,1577143.252,19.46706393,1.446579502,Electrical machines,"Electrical machines and apparatus: having individual functions, n.e.s. in heading no. 8543"
 901839,21.42589179,1551977.637,37.4831309,1.347415614,Medical,"Medical, surgical instruments and appliances: catheters, cannulae and the like"
 847191,39.5431318,1545273.657,17.15417987,45.50757523,"Digital processing units: whether or not presented with the rest of a system, which may contain in the same housing one or two of the following: units: whetocessing units: whether or not presented with the rest of a system, which may contain in the same housing one or two of the following","Digital processing units: whether or not presented with the rest of a system, which may contain in the same housing one or two of the following: storage units, input units, output units"
 711031,28.73905496,1492049.262,36.40674466,,Metals,"Metals: rhodium, unwrought or in powder form"
