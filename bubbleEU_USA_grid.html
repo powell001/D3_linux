@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<style>
+  body {
+  background-color:rgb(255, 255, 255)   
+  }
+
+.bubbles {
+stroke-width: 2px;
+stroke:black;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+.grid line {
+  stroke: lightgrey;
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges;
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+</style>
+
+<body>
+
+  
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+
+<script>
+
+  var margin = {top: 10, right: 20, bottom: 50, left: 50},
+      width = 1200 - margin.left - margin.right,
+      height = 820 - margin.top - margin.bottom;
+  
+  var svg = d3.select("body")
+    .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  
+  d3.csv("forBubbleGraph_subset.csv", function(data) {
+  
+    var x = d3.scaleLinear()
+      minx = d3.min(data,function(d){return parseFloat(d.Percentage_EUto_World);})
+      maxx = d3.max(data,function(d){return parseFloat(d.Percentage_EUto_World);})
+      x.domain([minx, maxx]).range([0, width]).nice();
+    
+    const gx = svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+      
+    var y = d3.scaleLinear()
+      miny = d3.min(data,function(d){return parseFloat(d.Percentage_USAimportsfrom_World);})
+      maxy = d3.max(data,function(d){return parseFloat(d.Percentage_USAimportsfrom_World);})
+      y.domain([miny, maxy]).range([height, 0]).nice();
+    
+    
+    const gy = svg.append("g")
+      .call(d3.axisLeft(y));
+  
+    var z = d3.scaleLinear()
+      .domain([1604801, 49527468])
+      .range([ 8, 120]);
+
+    var myColor = d3.scaleOrdinal()
+      .range(d3.schemeOranges[9]);
+
+    var tooltip = d3.select("#my_dataviz")
+      .append("div")
+        .style("opacity", 0)
+        .attr("class", "tooltip")
+        .style("background-color", "none")
+        .style("border-radius", "5px")
+        .style("padding", "10px")
+        .style("color", "black")
+        .style("text-align","center")
+        .style("position","absolute")
+        .style("min-width","80px")
+        .style("height","auto")
+        .style("border","yellow")
+        .style("background","orange")
+        .style("padding","14px")
+  
+
+    svg.append('g')
+      .selectAll("dot")
+      .data(data)
+      .enter()
+      .append("circle")
+        .attr("class", "bubbles")
+        .attr("cx", function (d) { return x(d.Percentage_EUto_World); } )
+        .attr("cy", function (d) { return y(d.Percentage_USAimportsfrom_World); } )
+        .attr("r", function (d) { return z(d.Value_EUexports_USA); } )
+        .style("fill", function (d) { return myColor(d.Percentage_Dutch_exports_EU); } )
+
+    // Add X axis label:
+    svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", 150 +width/2)
+      .attr("y", height + margin.top + 30)
+      .text("Percent of World Exports originating in the EU");
+
+
+    // Y axis label:
+    svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -margin.left+20)
+      .attr("x", -margin.top - height/2 + 160)
+      .text("Percentage of World Imports going to the USA")  
+
+    // gridlines in x axis function
+    function make_x_gridlines() {		
+        return d3.axisBottom(x)
+            .ticks(5)
+    }
+
+    // gridlines in y axis function
+    function make_y_gridlines() {		
+        return d3.axisLeft(y)
+            .ticks(5)
+    }
+
+     // add the X gridlines
+  svg.append("g")			
+      .attr("class", "grid")
+      .attr("transform", "translate(0," + height + ")")
+      .call(make_x_gridlines()
+          .tickSize(-height)
+          .tickFormat("")
+      )
+
+  // add the Y gridlines
+  svg.append("g")			
+      .attr("class", "grid")
+      .call(make_y_gridlines()
+          .tickSize(-width)
+          .tickFormat("")
+      )
+
+
+
+  //   // define X axis
+  //   var xAxis = d3.svg.axis()
+  //       .scale(x)
+  //       .orient("bottom")
+  //       .ticks(1)
+  //       .tickSize(-height, 0, 0); //Set rough # of ticks
+
+  //   // Define Y axis
+  //   var yAxis = d3.svg.axis()
+  //       .scale(y)
+  //       .orient("left")
+  //       .ticks(1)
+  //       .tickSize(-width, 0, 0);
+
+
+  // // draw axes here
+
+  //   svg.append("g")
+  //       .attr("class", "x axis") //assign "axis" class
+  //   .attr("transform", "translate(0," + (height - 30) + ")")
+  //       .call(xAxis);
+
+  //   svg.append("g")
+  //       .attr("class", "y axis") //assign "axis" class
+  //   .attr("transform", "translate(" + 30 + ",0)")
+  //       .call(yAxis);  
+
+  // //Draw a grid
+  // var numberOfTicks = 6;
+
+  // var yAxisGrid = yAxis.ticks(numberOfTicks)
+  //     .tickSize(width, 0)
+  //     .tickFormat("")
+  //     .orient("right");
+
+  // var xAxisGrid = xAxis.ticks(numberOfTicks)
+  //     .tickSize(-height, 0)
+  //     .tickFormat("")
+  //     .orient("top");
+
+  // svg.append("g")
+  //     .classed('y', true)
+  //     .classed('grid', true)
+  //     .call(yAxisGrid);
+
+  // svg.append("g")
+  //     .classed('x', true)
+  //     .classed('grid', true)
+  //     .call(xAxisGrid);
+
+  // svg.append("text")
+  //   .attr("class", "x label")
+  //   .attr("text-anchor", "middle")
+  //   .attr("x", width/2)
+  //   .attr("y", height + 40)
+  //   .text("Percentage of World exports originating from the EU");
+
+
+  // svg.append("text")
+  //   .attr("class", "y label")
+  //   .attr("text-anchor", "start")
+  //   .attr("y", 16)
+  //   .attr("dy", ".95em")
+  //   .attr("transform", "rotate(-90)")
+  //   .text("Percentage of World imports going to the USA");  
+
+  });
+
+   </script>
+  </body>
+</html>
+
